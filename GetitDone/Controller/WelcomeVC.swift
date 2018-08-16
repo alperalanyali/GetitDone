@@ -88,15 +88,15 @@ class WelcomeVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UIView.animate(withDuration: 0.7, delay: 0.3, options: .curveEaseIn, animations: {
+        UIView.animate(withDuration: 0.7, delay: 0.4, options: .curveEaseIn, animations: {
             self.bg.alpha = 1
             self.copyright.alpha = 1
         }) { (true) in
-            UIView.animate(withDuration: 0.5, delay: 0.4, options: .curveEaseIn, animations: {
+            UIView.animate(withDuration: 0.6, delay: 0.4, options: .curveEaseIn, animations: {
                 self.titleLabel.alpha = 1
                 self.infoLabel.alpha = 1
             }, completion: { (true) in
-                UIView.animate(withDuration: 0.5, delay: 0.4, options: .curveEaseIn, animations: {
+                UIView.animate(withDuration: 0.7, delay: 0.4, options: .curveEaseIn, animations: {
                     self.nextButton.alpha = 1
                 }, completion: nil)
             })
