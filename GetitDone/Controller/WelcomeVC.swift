@@ -51,6 +51,11 @@ class WelcomeVC: UIViewController {
         
         nextButton.addTarget(self, action: #selector(self.handleNext), for: .touchUpInside)
         
+        bg.alpha = 0
+        titleLabel.alpha = 0
+        infoLabel.alpha = 0
+        nextButton.alpha = 0
+        copyright.alpha = 0
         
     }
     
@@ -83,29 +88,17 @@ class WelcomeVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UIView.animate(withDuration: 0.5, delay: 0.3, options: .curveEaseIn, animations: {
-            self.bg.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
-            self.copyright.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+        UIView.animate(withDuration: 0.7, delay: 0.3, options: .curveEaseIn, animations: {
+            self.bg.alpha = 1
+            self.copyright.alpha = 1
         }) { (true) in
-            UIView.animate(withDuration: 0.6, delay: 0.4, options: .curveEaseIn, animations: {
-                self.bg.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-                self.copyright.transform = CGAffineTransform(scaleX: 1.0 , y: 1.0)
-                self.titleLabel.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+            UIView.animate(withDuration: 0.5, delay: 0.4, options: .curveEaseIn, animations: {
+                self.titleLabel.alpha = 1
+                self.infoLabel.alpha = 1
             }, completion: { (true) in
-                UIView.animate(withDuration: 0.7, delay: 0.5, options: .curveEaseIn, animations: {
-                    self.titleLabel.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-                    self.infoLabel.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
-                }, completion: { (true) in
-                    UIView.animate(withDuration: 0.6, delay: 0.4, options: .curveEaseIn, animations: {
-                        self.infoLabel.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-                        self.nextButton.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
-                    }, completion: { (true) in
-                        UIView.animate(withDuration: 0.6, delay: 0.4, options: .curveEaseIn, animations: {
-                            self.nextButton.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-                            
-                        })
-                    })
-                })
+                UIView.animate(withDuration: 0.5, delay: 0.4, options: .curveEaseIn, animations: {
+                    self.nextButton.alpha = 1
+                }, completion: nil)
             })
         }
     }
