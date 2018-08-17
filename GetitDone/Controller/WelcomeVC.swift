@@ -51,11 +51,9 @@ class WelcomeVC: UIViewController {
         
         nextButton.addTarget(self, action: #selector(self.handleNext), for: .touchUpInside)
         
-        bg.alpha = 0
-        titleLabel.alpha = 0
-        infoLabel.alpha = 0
-        nextButton.alpha = 0
-        copyright.alpha = 0
+
+        
+        [bg,titleLabel,infoLabel,nextButton,copyright].forEach{$0.alpha = 0}
         
     }
     

@@ -48,6 +48,8 @@ class ListVC: UIViewController, GDHeaderDelegate,GDNewItemPopupDelegate  {
         
         popup.textField.delegate = self
         popup.delegate = self
+        
+        [bg,popup,listTable,header].forEach{$0.alpha = 0 }
     }
     
     
@@ -56,10 +58,28 @@ class ListVC: UIViewController, GDHeaderDelegate,GDNewItemPopupDelegate  {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
         
     }
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        UIView.animate(withDuration: 1, delay: 0.7, options: .curveEaseIn, animations: {
+            self.header.alpha = 1
+            
+        }) { (true) in
+            UIView.animate(withDuration: 1, delay: 0.8, options: .curveEaseIn, animations: {
+                self.bg.alpha = 1
+                
+            }, completion: { (true) in
+                UIView.animate(withDuration: 1, delay: 0.6, options: .curveEaseIn, animations: {
+                    self.listTable.alpha = 1
+                }, completion: { (true) in
+                    UIView.animate(withDuration: 1, delay: 0.6, options: .curveEaseIn, animations: {
+                        self.popup.alpha = 1
+                    }, completion: nil)
+                })
+            })
+        }
     }
+    
+    
     @objc func keyboardWillShow(notification: Notification){
         let keyboardSize = (notification.userInfo![UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue.size
         self.keyboardHeight = keyboardSize.height
